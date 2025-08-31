@@ -4,7 +4,42 @@ body {
   font-family: var(--font-raleway);
 }
 
+.text_type_big {
+  font-size: 3.472vw;
+  line-height: normal;
+}
 
+.text_type_4x {
+  font-size: 2.222vw;
+  line-height: normal;
+}
+
+.text_type_3x {
+  font-size: 1.667vw;
+  line-height: 133.333%;
+}
+
+.text_type_2x {
+  font-size: 1.111vw;
+  line-height: 150%;
+}
+
+.text_type_normal {
+  font-size: 0.972vw;
+  line-height: 150%;
+  letter-spacing: -0.0107vw;
+}
+
+.text_type_1_5x {
+  font-size: 0.83vw;
+  line-height: normal;
+}
+
+.text-type_1x {
+  font-size: 0.55vw;
+  line-height: 150%;
+  letter-spacing: -0.0107vw;
+}
 
 @media (max-width: 550px) {
 }
