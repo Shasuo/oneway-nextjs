@@ -1,6 +1,18 @@
 @import "tailwindcss";
+:root {
+  --primary-bg: #141519;
+  --accent-elements: rgb(64, 15, 71);
+  --secondary-elements: #0016ff;
+  --error: #d44343;
+  --text-primary: #ffffff;
+  --text-primary-80: rgba(255, 255, 255, 0.8);
+}
 
 body {
+  margin: 0;
+  min-width: 320px;
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
   font-family: var(--font-raleway);
 }
 
@@ -35,11 +47,43 @@ body {
   line-height: normal;
 }
 
-.text-type_1x {
+.text_type_1x {
   font-size: 0.55vw;
   line-height: 150%;
   letter-spacing: -0.0107vw;
 }
 
 @media (max-width: 550px) {
+  .text_type_1x {
+    font-size: 2.133vw;
+    line-height: 150%;
+  }
+  .text_type_1_5x {
+    font-size: 3.2vw;
+    line-height: 150%;
+  }
+
+  .text_type_normal {
+    font-size: 3.73vw;
+    line-height: 142.86%;
+  }
+
+  .text_type_2x {
+    font-size: 4.267vw;
+    line-height: 150%;
+  }
+  .text_type_2_25x {
+    font-size: 4.8vw;
+    line-height: 122%;
+  }
+
+  .text_type_2_5x {
+    font-size: 5.33vw;
+    line-height: 120%;
+  }
+
+  .text_type_3x {
+    font-size: 6.4vw;
+    line-height: 108.33%;
+  }
 }
