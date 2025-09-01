@@ -3,7 +3,7 @@ export default function ContactsMobile() {
     <section
       className=" w-full mx-auto max-w-[90vw] h-[148vw] flex flex-col justify-between items-center rounded-[10.5vw]"
       style={{
-        background: `url("ContactsAuto1.png")`,
+        background: `url("ContactsAuto.png")`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
         backgroundRepeat: "no-repeat",
