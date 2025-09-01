@@ -1,6 +1,7 @@
 import styles from "./ReviewSlide.module.css";
 
-export default function ReviewSlideMobile({
+export default function ReviewSlideMobile(
+  {
   countryFrom,
   countryTo,
   carModel,
@@ -24,10 +25,11 @@ export default function ReviewSlideMobile({
   imgAlt: string;
   onClickLeft: React.MouseEventHandler<HTMLButtonElement>;
   onClickRight: React.MouseEventHandler<HTMLButtonElement>;
-}) {
+}
+) {
   return (
     <section className="flex flex-col gap-[3.2vw] justify-center w-full box-border py-0 px-[5vw] relative">
-      <p className="font-semibold text_type_1_5x flex items-center gap-[2.67vw]">
+      {/* <p className="font-semibold text_type_1_5x flex items-center gap-[2.67vw]">
         {countryFrom} <img src="path.png" alt="" /> {countryTo}
       </p>
       <h2 className="font-semibold text_type_2_25x">{carModel}</h2>
@@ -48,7 +50,7 @@ export default function ReviewSlideMobile({
         <button className={styles.change_review_btn} onClick={onClickRight}>
           &gt;
         </button>
-      </div>
+      </div> */}
     </section>
   );
 }

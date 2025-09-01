@@ -26,7 +26,7 @@ export default function ReviewsSlide({
   onClickRight: React.MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
-    <div className="flex h-[57.78vh] items-center w-full box-border px-[5vw] py-0 relative">
+    <div className="flex h-[70vh] items-center w-full box-border px-[5vw] py-0 relative">
       <div className="flex flex-col max-w-[34.58vw] w-full justify-between  mr-[3.47vw]">
         <div className="flex flex-col gap-[10px] ">
           <p className="font-semibold flex items-center gap-[0.69vw] text_type_1_5x">
@@ -37,11 +37,11 @@ export default function ReviewsSlide({
         </div>
         <div className="absolute bottom-0">
           <div className="mt-[3.47vw] flex text_type_1_5x">
-            <img
+            {socialIcon ? <img
               src={socialIcon}
               alt={socialAlt}
               className="w-[1.11vw] h-[1.11vw]"
-            />
+            /> : null}
             <p className="ml-[0.556vw]">{socialNetwork}</p>
           </div>
           <div className="flex">
@@ -60,8 +60,8 @@ export default function ReviewsSlide({
           </div>
         </div>
       </div>
-      <div className="ml-[4.86vw]  w-[52.64vw]">
-        <img className=" max-w-[45vw] left-0" src={imgSrc} alt={imgAlt} />
+      <div className="ml-[4.86vw]  w-[52.64vw] overflow-hidden absolute right-0">
+        <img className="max-h-[70vh] max-w-[45vw] left-0" src={imgSrc} alt={imgAlt} />
       </div>
     </div>
   );

@@ -53,7 +53,7 @@ body {
   letter-spacing: -0.0107vw;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 1024px) {
   .text_type_1x {
     font-size: 2.133vw;
     line-height: 150%;

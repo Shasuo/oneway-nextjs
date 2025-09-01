@@ -3,8 +3,12 @@ import styles from "./Team.module.css";
 export default function Team() {
   return (
     <section
-      className={styles.block}
-      style={{ background: `url("bottom_bg.png")` }}
+      className="flex flex-col gap-[6.111vw] w-[100vw] items-center pb-[5vw]"
+      style={{ background: `url("bg.png")`,
+        backgroundPosition: "top center",
+        backgroundSize: "cover",
+        backgroundRepeat:"no-repeat"
+       }}
     >
       <div className="flex flex-col gap-[0.833vw] items-center text-center w-[17.847vw]">
         <img src="guarantee_icon.svg" className="w-[1.736vw] h-[1.736vw]" />

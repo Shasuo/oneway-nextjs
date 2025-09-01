@@ -5,6 +5,7 @@ import ContactsMobile from "../components/Contacts/ContactsMobile";
 import Team from "../components/Team/Team";
 import FAQBlock from "../components/FAQBlockMain/FAQBlockMain";
 import ReviewsBlockMobile from "../components/ReviewsBlock/ReviewsBlockMobile";
+import TeamMobile from "@/components/Team/TeamMobile";
 
 export default function Home() {
   const isMobile = useMediaQuery({ maxWidth: 1024 });
@@ -13,14 +14,16 @@ export default function Home() {
       <div className="font-semibold">Raleway</div>
       <div className="font-medium">Raleway</div>
       <div className="font-normal">Raleway</div>
-      <ReviewsBlockMobile />
-      {/* {isMobile && <ReviewsBlockMobile />} */}
-      {/* {isMobile && <ReviewsBlock />} */}
-      <Team />
+      {/* {isMobile && <ReviewsBlockMobile />}
+      {!isMobile && <ReviewsBlock />} */}
+      {/* <TeamMobile /> */}
+      {/* {!isMobile &&  <Team />} */}
+      
 
       {/* {isMobile ? <ContactsMobile /> : <Contacts />} */}
-      {/* <ContactsMobile /> */}
-      <Contacts />
+      {isMobile && <ContactsMobile />}
+      {!isMobile && <Contacts />}
+      {/* <Contacts /> */}
       <section className="w-full mt-[10vw] box-border pt-0 px-[5vw] pb-[5vw]">
         <FAQBlock />
       </section>
