@@ -1,0 +1,27 @@
+.circle {
+  /* background-image: url(../../../../assets/dashed_circle.svg); */
+  background-size: cover;
+  width: 27.778vw;
+  height: 27.778vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.step {
+  width: 14.444vw;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .circle {
+    width: 65.067vw;
+    height: 65.067vw;
+    /* background-image: url(../../../../assets/dashed_circle_mob.svg); */
+  }
+
+  .step {
+    width: 44.533vw;
+  }
+}

@@ -1,0 +1,41 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 4.444vw;
+  align-items: center;
+}
+
+.title {
+  width: 42.778vw;
+  text-align: center;
+}
+
+.circles {
+  display: flex;
+  margin-left: 6.6vw;
+}
+
+.circles > * {
+  margin-left: -6.6vw;
+}
+
+@media (max-width: 1024px) {
+  .block {
+    gap: 8.533vw;
+  }
+
+  .title {
+    width: 87.2vw;
+  }
+
+  .circles {
+    flex-direction: column;
+    margin-left: 0;
+    margin-top: 17.333vw;
+  }
+
+  .circles > * {
+    margin-left: 0;
+    margin-top: -17.333vw;
+  }
+}

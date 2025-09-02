@@ -11,6 +11,10 @@ import FAQBlockSecondMob from "@/components/FAQBlockSecond.tsx/FAQBlockSecondMob
 import FAQBlockMobile from "@/components/FAQBlockMain/FAQBlockMainMob";
 import Guarantee from "@/components/Guarantee/Guarantee";
 import GuaranteeMobile from "@/components/Guarantee/GuaranteeMobile";
+import Process from "@/components/Process/Process";
+import ProcessMobile from "@/components/Process/ProcessMobile";
+import Benefits from "@/components/Benefits/Benefits";
+import BenefitsMobile from "@/components/Benefits/BenefitsMobile";
 
 export default function Home() {
   const isMobile = useMediaQuery({ maxWidth: 1024 });
@@ -36,6 +40,10 @@ export default function Home() {
 
       <Guarantee />
       <GuaranteeMobile />
+      <Process />
+      <ProcessMobile />
+      <Benefits />
+      <BenefitsMobile />
     </div>
   );
 }
