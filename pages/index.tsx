@@ -9,6 +9,8 @@ import TeamMobile from "@/components/Team/TeamMobile";
 import FAQBlockSecond from "@/components/FAQBlockSecond.tsx/FAQBlockSecond";
 import FAQBlockSecondMob from "@/components/FAQBlockSecond.tsx/FAQBlockSecondMob";
 import FAQBlockMobile from "@/components/FAQBlockMain/FAQBlockMainMob";
+import Guarantee from "@/components/Guarantee/Guarantee";
+import GuaranteeMobile from "@/components/Guarantee/GuaranteeMobile";
 
 export default function Home() {
   const isMobile = useMediaQuery({ maxWidth: 1024 });
@@ -31,6 +33,9 @@ export default function Home() {
       </section>
 
       <FAQBlockSecondMob />
+
+      <Guarantee />
+      <GuaranteeMobile />
     </div>
   );
 }

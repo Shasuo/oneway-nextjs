@@ -1,0 +1,24 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 4.444vw;
+  padding: 0 5vw;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 1024px) {
+  .block {
+    gap: 8.533vw;
+    padding: 0 6.4vw;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 8.533vw;
+  }
+}
