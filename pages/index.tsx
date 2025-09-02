@@ -8,6 +8,7 @@ import ReviewsBlockMobile from "../components/ReviewsBlock/ReviewsBlockMobile";
 import TeamMobile from "@/components/Team/TeamMobile";
 import FAQBlockSecond from "@/components/FAQBlockSecond.tsx/FAQBlockSecond";
 import FAQBlockSecondMob from "@/components/FAQBlockSecond.tsx/FAQBlockSecondMob";
+import FAQBlockMobile from "@/components/FAQBlockMain/FAQBlockMainMob";
 
 export default function Home() {
   const isMobile = useMediaQuery({ maxWidth: 1024 });
@@ -26,7 +27,7 @@ export default function Home() {
        <ContactsMobile />
       {/* <Contacts /> */}
       <section className="w-full mt-[10vw] box-border pt-0 px-[5vw] pb-[5vw]">
-        <FAQBlock />
+        <FAQBlockMobile />
       </section>
 
       <FAQBlockSecondMob />

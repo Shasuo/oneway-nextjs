@@ -1,15 +1,16 @@
-import FAQItem from "../FAQItem/FAQItem";
+
+import FAQItemMobile from "../FAQItem/FAQItemMobile";
 import FAQList from "../FAQList/FAQList";
 import { FAQDataMain } from "./FAQDataMain";
 
-function FAQBlock() {
+function FAQBlockMobile() {
 
   const FAQdata = FAQDataMain;
   return (
     <div id="faq">
       <FAQList width={"100%"}>
         {FAQdata.map((item, key) => (
-          <FAQItem
+          <FAQItemMobile
           key={key}
           question={
             item.question
@@ -22,4 +23,4 @@ function FAQBlock() {
   );
 }
 
-export default FAQBlock;
+export default FAQBlockMobile;

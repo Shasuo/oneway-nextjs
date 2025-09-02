@@ -11,18 +11,18 @@ function FAQItemMobile({
   answer: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const isMobile = useMediaQuery({ maxWidth: 1024 });
+
 
   return (
     <button onClick={() => setIsOpen(!isOpen)} className={styles.item}>
-      <div className={styles.question}>
-        <h3 className={`text text_type_${isMobile ? "body" : "h3"}_semibold`}>
+      <div className="flex justify-between items-center w-full">
+        <h3 className={"text_type_normal font-semibold"}>
           {question}
         </h3>
         {isOpen ? (
-          <img src="circle_minus.svg" className={styles.icon} /> // <MinusIcon className={styles.icon} />
+          <img src="circle_minus.svg" className="w-[6.4vw] h-[6.4vw]" /> // <MinusIcon className={styles.icon} />
         ) : (
-          <img src="circle_plus.svg" className={styles.icon} /> // <PlusIcon className={styles.icon} />
+          <img src="circle_plus.svg" className="w-[6.4vw] h-[6.4vw]" /> // <PlusIcon className={styles.icon} />
         )}
       </div>
 
@@ -36,18 +36,7 @@ function FAQItemMobile({
           overflow: "hidden",
         }}
       >
-        {/* <p
-          className={classNames(
-            "text",
-            "text_type_body_medium",
-            [styles.answer],
-            {
-              text_type_tiny_semibold: isMobile,
-              text_type_body_medium: !isMobile,
-            }
-          )}
-        > */}
-        <p className="text text_type_body_medium whitespace-pre-wrap text-start text-[rgba(255, 255, 255, 0.60)]">
+        <p className="text_type_1_5x fone-semibold whitespace-pre-wrap text-start text-white opacity-60">
           {answer}
         </p>
       </motion.div>
