@@ -1,5 +1,4 @@
-import styles from "./Benefits.module.css";
-import { useMediaQuery } from "react-responsive";
+
 
 function Benefits() {
   const textClassName = "text_type_3x font-semibold pb-[2.222vw] border-b-[0.07vw] border-[rgba(255, 255, 255, 0.20)]"

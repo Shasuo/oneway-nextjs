@@ -1,49 +1,30 @@
-import { useMediaQuery } from "react-responsive";
 import Contacts from "../components/Contacts/Contacts";
 import ReviewsBlock from "../components/ReviewsBlock/ReviewsBlock";
-import ContactsMobile from "../components/Contacts/ContactsMobile";
 import Team from "../components/Team/Team";
-import FAQBlock from "../components/FAQBlockMain/FAQBlockMain";
-import ReviewsBlockMobile from "../components/ReviewsBlock/ReviewsBlockMobile";
-import TeamMobile from "@/components/Team/TeamMobile";
-import FAQBlockSecond from "@/components/FAQBlockSecond.tsx/FAQBlockSecond";
-import FAQBlockSecondMob from "@/components/FAQBlockSecond.tsx/FAQBlockSecondMob";
-import FAQBlockMobile from "@/components/FAQBlockMain/FAQBlockMainMob";
-import Guarantee from "@/components/Guarantee/Guarantee";
-import GuaranteeMobile from "@/components/Guarantee/GuaranteeMobile";
-import Process from "@/components/Process/Process";
-import ProcessMobile from "@/components/Process/ProcessMobile";
-import Benefits from "@/components/Benefits/Benefits";
-import BenefitsMobile from "@/components/Benefits/BenefitsMobile";
+import PreloadCar from "@/components/PreloadCar/PreloadCar";
+import { FirstScreen } from "@/components/FirstScreen/FirstScreen";
+import { WheelBlock } from "@/components/WheelBlock/WheelBlock";
+import { SecondScreen } from "@/components/SecondScreen/SecondScreen";
+import { FAQBlock } from "@/components/FAQBlockMain/FAQBlockMain";
 
 export default function Home() {
-  const isMobile = useMediaQuery({ maxWidth: 1024 });
   return (
-    <div className="">
-      <div className="font-semibold">Raleway</div>
-      <div className="font-medium">Raleway</div>
-      <div className="font-normal">Raleway</div>
-      {/* {isMobile && <ReviewsBlockMobile />}
-      {!isMobile && <ReviewsBlock />} */}
-      {/* <TeamMobile /> */}
-      {/* {!isMobile &&  <Team />} */}
-      
+    <>
+      <PreloadCar />
+      <div className="max-w-[97vw] mx-auto w-full relative">
+        <FirstScreen />
+      </div>
+      <SecondScreen />
+      <div className="max-w-[97vw] mx-auto w-full relative">
+        <ReviewsBlock />
+      </div>
+      <WheelBlock />
+      <Team />
 
-      {/* {isMobile ? <ContactsMobile /> : <Contacts />} */}
-       <ContactsMobile />
-      {/* <Contacts /> */}
-      <section className="w-full mt-[10vw] box-border pt-0 px-[5vw] pb-[5vw]">
-        <FAQBlockMobile />
-      </section>
-
-      <FAQBlockSecondMob />
-
-      <Guarantee />
-      <GuaranteeMobile />
-      <Process />
-      <ProcessMobile />
-      <Benefits />
-      <BenefitsMobile />
-    </div>
+      <div className="max-w-[90vw] mx-auto w-full relative">
+        <Contacts />
+        <FAQBlock />
+      </div>
+    </>
   );
 }

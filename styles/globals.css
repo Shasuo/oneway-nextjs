@@ -21,21 +21,25 @@ body {
   line-height: normal;
 }
 
+/*32px*/
 .text_type_4x {
   font-size: 2.222vw;
   line-height: normal;
 }
 
+/*24px*/
 .text_type_3x {
   font-size: 1.667vw;
   line-height: 133.333%;
 }
 
+/*16px*/
 .text_type_2x {
   font-size: 1.111vw;
   line-height: 150%;
 }
 
+/*14px*/
 .text_type_normal {
   font-size: 0.972vw;
   line-height: 150%;

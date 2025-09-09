@@ -1,29 +1,44 @@
+import Link from "next/link";
+
+interface ContactButtonProps {
+  href: string;
+  text: string;
+  iconSrc: string;
+}
+
+const ContactButton = ({ href, text, iconSrc }: ContactButtonProps) => {
+  return (
+    <Link
+      href={href}
+      className="flex items-center py-[0.83vw] px-[1.11vw] rounded-[0.83vw] font-medium text_type_2x"
+      style={{ border: "0.07vw solid #383839" }}
+    >
+      <img src={iconSrc} className="w-[2.22vw] mr-[0.85vw]" />
+      {text}
+    </Link>
+  );
+};
+
 export default function Contacts() {
   return (
-    <section
-      className=" w-full mx-auto max-w-[90vw] h-[38.54vw] flex flex-col justify-between items-center"
-      style={{
-        background: `url("ContactsAuto.png")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="flex flex-col items-center gap-[12px] mt-[30px]">
-        <h1 className="text_type_big">Контакты для связи</h1>
-        <p className=" text_type_2x">
+    <section className="relative">
+      <img src="/contactsCar.webp" className="w-full" />
+      <div
+        className="text-center mx-auto w-fit absolute top-[3.2vw]"
+        style={{ left: "50%", transform: "translateX(-50%)" }}
+      >
+        <h3 className="text_type_big font-semibold">Контакты для связи</h3>
+        <p className="text_type_2x mt-[0.83vw]">
           Адрес: Москва, 3-й силикатный проезд 4, к1
         </p>
       </div>
-      <div className="flex gap-[16px] mb-[30px]">
-        <div className="flex items-center px-[16px] py-[12px] border rounded-[12px] border-opacity-20">
-          <img src="WhatsUp.svg" className="mr-[12px]" />
-          <p>+79660076457</p>
-        </div>
-        <div className="flex items-center  px-[16px] py-[12px] border rounded-[12px] border-opacity-20">
-          <img src="TelegramNegative.svg" className="mr-[12px] w-[32px]" />
-          <p>@one_way_manager</p>
-        </div>
+
+      <div
+        style={{ left: "50%", transform: "translateX(-50%)" }}
+        className="bottom-[3.47vw] flex items-center gap-[1.11vw] absolute"
+      >
+        <ContactButton text="+79660076457" href="" iconSrc="/wa.svg" />
+        <ContactButton text="@one_way_manager" href="" iconSrc="/tg.svg" />
       </div>
     </section>
   );

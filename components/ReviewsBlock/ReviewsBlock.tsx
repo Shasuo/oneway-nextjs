@@ -5,7 +5,6 @@ import { useMediaQuery } from "react-responsive";
 import ReviewSlideMobile from "./ReviewSlideMobile";
 
 export default function ReviewsBlock() {
-  const isMobile = useMediaQuery({ maxWidth: 1024 });
   const data = reviewData;
   const reviewSlideData = data.map((item, key) => (
     <ReviewsSlide

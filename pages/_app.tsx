@@ -1,3 +1,4 @@
+import { Layout } from "@/components/Layout/Layout";
 import "@/styles/globals.css";
 
 import type { AppProps } from "next/app";
@@ -16,7 +17,9 @@ export default function App({ Component, pageProps }: AppProps) {
       className={`${raleway.variable} font-sans`}
       style={{ fontFamily: "var(--font-raleway)" }}
     >
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </div>
   );
 }
