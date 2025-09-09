@@ -11,11 +11,45 @@ export default function PreloadCar() {
   const [currentFrame, setCurrentFrame] = useState(START_FRAME);
   const [isScrollOver, setIsScrollOver] = useState(false);
   const [isFinalClose, setIsFinalClose] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const targetFrameRef = useRef(START_FRAME);
   const isAutoScrollingRef = useRef(false);
+  const loadedImagesRef = useRef<Record<number, HTMLImageElement>>({});
 
   useEffect(() => {
+    const loadAllFrames = async () => {
+      const promises: Promise<void>[] = [];
+
+      for (let i = START_FRAME; i <= END_FRAME; i++) {
+        const img = new Image();
+        img.src = `/frames/${i}.webp`;
+        loadedImagesRef.current[i] = img;
+
+        const promise = new Promise<void>((resolve, reject) => {
+          img.onload = () => resolve();
+          img.onerror = () => reject(new Error(`Failed to load frame ${i}`));
+        });
+
+        promises.push(promise);
+      }
+
+      try {
+        await Promise.all(promises);
+        console.log("✅ Все кадры успешно загружены");
+        setIsLoaded(true);
+      } catch (err) {
+        console.error("❌ Ошибка загрузки кадров:", err);
+        setIsLoaded(true);
+      }
+    };
+
+    loadAllFrames();
+  }, []);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
     let animationId: number;
     let lastTime = 0;
 
@@ -55,10 +89,10 @@ export default function PreloadCar() {
     animationId = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationId);
-  }, []);
+  }, [isLoaded]);
 
   useEffect(() => {
-     if (isFinalClose) return;
+    if (isFinalClose) return;
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
 
@@ -80,13 +114,22 @@ export default function PreloadCar() {
 
   useEffect(() => {
     if (isScrollOver) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setIsFinalClose(true);
       }, 700);
+      return () => clearTimeout(timer);
     }
   }, [isScrollOver]);
 
   if (isFinalClose) return null;
+
+  if (!isLoaded) {
+    return (
+      <div className="fixed left-0 top-0 w-full h-screen bg-black z-18 max-lg:hidden flex items-center justify-center">
+        <div className="text-white">Загрузка анимации...</div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -106,7 +149,10 @@ export default function PreloadCar() {
       />
 
       <img
-        src={`/frames/${currentFrame}.webp`}
+        src={
+          loadedImagesRef.current[currentFrame]?.src ||
+          `/frames/${currentFrame}.webp`
+        }
         alt="Animation frame"
         className="absolute inset-0 w-full h-full object-cover"
         loading="eager"
