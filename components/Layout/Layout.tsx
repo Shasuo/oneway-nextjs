@@ -1,39 +1,24 @@
 import Link from "next/link";
-import { useState } from "react";
+
 import { Header } from "../FirstScreen/Header";
+import { useAtom } from "jotai";
+import { isInitialCarFramesLoaded } from "../Jotai/atoms";
+import { motion } from "framer-motion";
 
-const HeaderLink = ({ text, href }: { text: string; href: string }) => {
-  return (
-    <Link className="text_type_2x" href={href}>
-      {text}
-    </Link>
-  );
-};
-interface HeaderLinksType {
-  text: string;
-  href?: string;
-}
-
-const headerLinks: HeaderLinksType[] = [
-  { text: "О нас", href: "" },
-  { text: "Кейсы", href: "" },
-  { text: "Услуги", href: "" },
-  { text: "FAQ", href: "" },
-  { text: "Контакты", href: "" },
-];
 export const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [isPreloadOver, setIsPreloadOver] = useState(true);
+  
+  const isLoaded = useAtom(isInitialCarFramesLoaded)[0];
   return (
     <div>
-      <div
-        className="max-w-[97vw] w-full fixed top-0 z-30 h-[100vh] max-lg:max-w-[91.46vw]"
+      
+       <motion.div
+        initial={{ y: "100vh" }} 
+        animate={isLoaded ? { y: 0 } : { y: "100vh" }} 
+        transition={{ duration: .6, ease: "easeOut", delay: 1.4 }}
+        className="max-w-[97vw] w-full fixed top-0 left-1/2 -translate-x-1/2 h-[100vh] pointer-events-none user-select-none z-40"
         style={{
-          left: "50%",
-          transform: "translateX(-50%)",
-          borderLeft: "0.06vw solid rgba(255, 255, 255, 0.2)",
-          borderRight: "0.06vw solid rgba(255, 255, 255, 0.2)",
-          userSelect: "none",
-          pointerEvents: "none",
+          borderLeft: "0.08vw solid rgba(255, 255, 255, 0.4)",
+          borderRight: "0.08vw solid rgba(255, 255, 255, 0.4)",
         }}
       />
       <Header />

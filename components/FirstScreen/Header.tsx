@@ -1,9 +1,33 @@
 import Link from "next/link";
 import { useState } from "react";
+import {
+  carAnimationGoingClose,
+  isInitialCarFramesLoaded,
+} from "../Jotai/atoms";
+import { useAtom } from "jotai";
+import { motion } from "framer-motion";
 
-const HeaderLink = ({ text, href }: { text: string; href: string }) => {
+const HeaderLink = ({
+  text,
+  href,
+  anchor,
+}: {
+  text: string;
+  href: string;
+  anchor?: (id: string) => void;
+}) => {
+  const handleAnchorCheck = (e: React.MouseEvent) => {
+    if (anchor) {
+      e.preventDefault();
+      anchor(href);
+    }
+  };
   return (
-    <Link className="text_type_2x" href={href}>
+    <Link
+      className="text_type_2x"
+      href={href}
+      onClick={(e) => handleAnchorCheck(e)}
+    >
       {text}
     </Link>
   );
@@ -14,21 +38,49 @@ interface HeaderLinksType {
 }
 
 const headerLinks: HeaderLinksType[] = [
-  { text: "О нас", href: "" },
-  { text: "Кейсы", href: "" },
-  { text: "Услуги", href: "" },
-  { text: "FAQ", href: "" },
-  { text: "Контакты", href: "" },
+  { text: "О нас", href: "ABOUT" },
+  { text: "Кейсы", href: "REVIEWS" },
+  { text: "Услуги", href: "SERVICES" },
+  { text: "FAQ", href: "FAQ" },
+  { text: "Контакты", href: "CONTACTS" },
 ];
 
 export const Header = () => {
-  const [isPreloadOver, setIsPreloadOver] = useState(true);
-  const [isMobileMenuActive, setIsMobileMenuActive] = useState(true)
+  const goingClose = useAtom(carAnimationGoingClose)[0];
+  const [isScrollOver, setIsScrollOver] = useAtom(carAnimationGoingClose);
+
+  const [isMobileMenuActive, setIsMobileMenuActive] = useState(true);
+  const isLoaded = useAtom(isInitialCarFramesLoaded)[0];
+
+  const scrollTo = (id: string) => {
+    if (!isScrollOver) {
+      setIsScrollOver(true);}
+
+      const element = document.getElementById(id);
+      if (!element) {
+        console.warn(`Элемент с id="${id}" не найден`);
+
+        return;
+      }
+
+      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+
+      const offsetVw = 7;
+      const vwInPx = (offsetVw / 100) * window.innerWidth;
+
+      const targetScrollY = elementTop - vwInPx;
+
+      window.scrollTo({
+        top: targetScrollY,
+        behavior: "smooth",
+      });
+    
+  };
   return (
     <header>
       <div
         className={`fixed left-[5vw] w-full top-0 z-30 max-w-[90vw] flex justify-between max-lg:hidden ${
-          isPreloadOver ? "items-center" : "items-start"
+          goingClose ? "items-center" : "items-start"
         }`}
       >
         <div className="flex items-center">
@@ -37,29 +89,72 @@ export const Header = () => {
             alt="OneWay"
             className="w-[6.25vw] h-[6.25vw]"
           />
-          <nav className="ml-[5.63vw]">
-            <div className="space-x-[2.64vw]">
+          <nav className="ml-[5.63vw] overflow-hidden">
+            <div className="space-x-[2.64vw] flex items-center">
               {headerLinks.map((el, index) => (
-                <HeaderLink text={el.text} href={el.href || ""} key={index} />
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={
+                    isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                  }
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeOut",
+                    delay: index * 0.1,
+                  }}
+                >
+                  <HeaderLink
+                    text={el.text}
+                    href={el.href || ""}
+                    anchor={(id) => scrollTo(id)}
+                  />
+                </motion.div>
               ))}
             </div>
           </nav>
-          <div className="ml-[2.2vw] mr-[2.2vw] w-[0.06vw] h-[1.94vw] bg-white" />
-          <HeaderLink text="Инвесторам" href="" />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
+          >
+            <div className="ml-[2.2vw] mr-[2.2vw] w-[0.06vw] h-[1.94vw] bg-white" />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
+          >
+            <HeaderLink text="Инвесторам" href="" />
+          </motion.div>
         </div>
-        {isPreloadOver ? (
+        {goingClose ? (
           <div className="px-[2.22vw] py-[0.73vw] bg-white rounded-[200px] text_type_normal text-[#16171A] cursor-pointer font-medium">
             Связаться
           </div>
         ) : (
           <div className="max-w-[31.46vw] w-full mt-[2.57vw]">
-            <h2 className="text_type_3x font-semibold">
-              Помогаем приобрести премиум-авто за рубежом
-            </h2>
-            <p className="mt-[1.67vw] text_type_2x">
-              Подберём, купим и безопасно доставим в руки
-              <br /> за 5 недель
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
+            >
+              <h2 className="text_type_3x font-semibold">
+                Помогаем приобрести премиум-авто за рубежом
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.9 }}
+            >
+              <p className="mt-[1.67vw] text_type_2x">
+                Подберём, купим и безопасно доставим в руки
+                <br /> за 5 недель
+              </p>
+            </motion.div>
           </div>
         )}
       </div>

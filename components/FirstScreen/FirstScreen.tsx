@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BottomThresholdInView } from "../BottomThresholdInView/BottomThresholdInViewю";
+import { useAtom } from "jotai";
+import { isCarAnimationLoaded } from "../Jotai/atoms";
+import { motion, useInView } from "framer-motion";
 
 interface TexBlockType {
   headline: string;
@@ -7,6 +10,7 @@ interface TexBlockType {
   active: boolean;
   textWidth: number;
   position: { top: number; left: number };
+  isLoaded: boolean;
 }
 
 interface InteractiveLineType {
@@ -23,24 +27,41 @@ const TextBlock = ({
   active,
   textWidth,
   position,
+  isLoaded,
 }: TexBlockType) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
   return (
     <div
+    ref={ref}
       className="absolute"
       style={{
         left: `${position.left}vw`,
         top: `${position.top}vw`,
-        opacity: active ? 1 : 0.3,
+        opacity: isInView ? 1 : 0.3,
         transition: ".3s",
+        zIndex: 3,
       }}
     >
-      <h3 className="font-semibold text_type_4x">{headline}</h3>
-      <p
-        className="mt-[1.11vw] text_type_2x"
-        style={{ maxWidth: `${textWidth}vw` }}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.3, ease: "easeOut", delay: 0.1 }}
       >
-        {text}
-      </p>
+        <h3 className="font-semibold text_type_4x">{headline}</h3>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.3, ease: "easeOut", delay: 0.2 }}
+      >
+        <p
+          className="mt-[1.11vw] text_type_2x"
+          style={{ maxWidth: `${textWidth}vw` }}
+        >
+          {text}
+        </p>
+      </motion.div>
     </div>
   );
 };
@@ -109,63 +130,63 @@ const InteractiveLinesData: InteractiveLineType[] = [
     isActive: false,
     position: { left: -1.5, top: 32.22 },
     angle: -5.4,
-    animationTimeMs: 233,
+    animationTimeMs: 100,
   },
   {
     width: 9.8,
     isActive: false,
     position: { left: 6.6, top: 26.8 },
     angle: -83.46,
-    animationTimeMs: 200,
+    animationTimeMs: 100,
   },
   {
     width: 7.4,
     isActive: false,
     position: { left: 11.53, top: 20.1 },
     angle: -30.18,
-    animationTimeMs: 197,
+    animationTimeMs: 100,
   },
   {
     width: 12.5,
     isActive: false,
     position: { left: 18.14, top: 20.05 },
     angle: 16.7,
-    animationTimeMs: 333,
+    animationTimeMs: 100,
   },
   {
     width: 15.86,
     isActive: false,
     position: { left: 28.4, top: 26.97 },
     angle: 40.38,
-    animationTimeMs: 423,
+    animationTimeMs: 100,
   },
   {
     width: 4.34,
     isActive: false,
     position: { left: 42.3, top: 31.8 },
     angle: -7.4,
-    animationTimeMs: 116,
+    animationTimeMs: 100,
   },
   {
     width: 10.675,
     isActive: false,
     position: { left: 46.38, top: 33.1 },
     angle: 17,
-    animationTimeMs: 285,
+    animationTimeMs: 100,
   },
   {
     width: 4.1,
     isActive: false,
     position: { left: 56.8, top: 34.65 },
     angle: 0,
-    animationTimeMs: 109,
+    animationTimeMs: 100,
   },
   {
     width: 6.53,
     isActive: false,
     position: { left: 59.96, top: 36.97 },
     angle: 44.57,
-    animationTimeMs: 174,
+    animationTimeMs: 100,
   },
   {
     width: 3.4,
@@ -179,7 +200,7 @@ const InteractiveLinesData: InteractiveLineType[] = [
     isActive: false,
     position: { left: 68, top: 37.15 },
     angle: 1.59,
-    animationTimeMs: 365,
+    animationTimeMs: 265,
   },
   {
     width: 4.71,
@@ -319,7 +340,13 @@ const InteractiveLinesData: InteractiveLineType[] = [
 export const FirstScreen = () => {
   const [animatedLines, setAnimatedLines] =
     useState<InteractiveLineType[]>(InteractiveLinesData);
-  console.log("sd");
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  console.log(isInView);
+
+  const isLoaded = useAtom(isCarAnimationLoaded)[0];
 
   const startLineAnimationHandle = (lineId: number) => {
     if (lineId < animatedLines.length) {
@@ -333,22 +360,38 @@ export const FirstScreen = () => {
     }
   };
 
-  console.log(animatedLines.length);
+  useEffect(() => {
+    if (isInView && isLoaded) {
+      startLineAnimationHandle(0);
+    }
+  }, [isInView, isLoaded]);
 
   return (
     <section className="mt-[11.25vw] relative h-[77vw] max-lg:hidden">
       <h1 className="text_type_big max-w-[59.03vw] ml-[6.25vw] font-semibold">
-        <span className="opacity-[40%]">Автомобиль из-за рубежа —</span> это
-        выше класс и лучше состояние — за те же деньги
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.3, ease: "easeOut", delay: 0.1 }}
+        >
+          <span className="opacity-[40%]">Автомобиль из-за рубежа —</span> это
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.3, ease: "easeOut", delay: 0.2 }}
+        >
+          выше класс и лучше состояние —
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
+        >
+          за те же деньги
+        </motion.div>
       </h1>
-      <div
-        onClick={() => {
-          startLineAnimationHandle(0);
-        }}
-        className="mt-[10vw] bg-[red] w-fit font-medium px-[2vw] py-[.4vw] cursor-pointer"
-      >
-        Запуск анимации
-      </div>
 
       <div>
         <TextBlock
@@ -357,6 +400,7 @@ export const FirstScreen = () => {
           text="Призвети машину из-за рубежа, дешевле, чем купить такую же в России"
           textWidth={24.24}
           position={{ top: 18.7, left: 36.04 }}
+          isLoaded={isLoaded}
         />
         <TextBlock
           active={false}
@@ -364,29 +408,53 @@ export const FirstScreen = () => {
           text="Авто за рубежом проходят ТО у официальных диллеров, поэтому служат дольше"
           textWidth={23.4}
           position={{ top: 39.5, left: 68.3 }}
+          isLoaded={isLoaded}
         />
+        <div ref={ref} className="w-full absolute top-[50vw] h-[1vw] " />
+
         <TextBlock
           active={false}
           headline="Прозрачно"
           text="Из-за строгого законодательства риск скурченного пробега и скрытых дефектов меньше"
           textWidth={23.5}
           position={{ top: 53.2, left: 11.1 }}
+          isLoaded={isLoaded}
         />
       </div>
-      <div>
-        {animatedLines.map((line: InteractiveLineType, index: number) => (
-          <InteractiveLine
-            key={index}
-            id={index}
-            width={line.width}
-            isActive={line.isActive}
-            position={line.position}
-            angle={line.angle}
-            startLineAnimationById={startLineAnimationHandle}
-            animationTimeMs={line.animationTimeMs}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
+      >
+        <div>
+          <div
+            style={{
+              position: "absolute",
+              top: "17vw",
+              left: 0,
+              right: 0,
+              height: "30.43vw",
+              background:
+                "linear-gradient(to bottom, rgba(20, 21, 25, 1), rgba(20, 21, 25, 0.7), rgba(20, 21, 25, 0))",
+              pointerEvents: "none",
+              zIndex: 2,
+            }}
           />
-        ))}
-      </div>
+
+          {animatedLines.map((line: InteractiveLineType, index: number) => (
+            <InteractiveLine
+              key={index}
+              id={index}
+              width={line.width}
+              isActive={line.isActive}
+              position={line.position}
+              angle={line.angle}
+              startLineAnimationById={startLineAnimationHandle}
+              animationTimeMs={line.animationTimeMs}
+            />
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 };

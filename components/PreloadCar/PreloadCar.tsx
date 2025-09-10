@@ -1,17 +1,24 @@
 import { useEffect, useState, useRef } from "react";
+import { useAtom } from "jotai";
+import {
+  carAnimationGoingClose,
+  isCarAnimationLoaded,
+  isInitialCarFramesLoaded,
+} from "../Jotai/atoms";
+
+import { motion } from "framer-motion";
 
 const START_FRAME = 100;
 const END_FRAME = 189;
-const FRAME_COUNT = END_FRAME - START_FRAME + 1;
 
 const FRAME_DURATION_MS = 30;
 const SCROLL_MULTIPLIER = 0.04;
 
 export default function PreloadCar() {
   const [currentFrame, setCurrentFrame] = useState(START_FRAME);
-  const [isScrollOver, setIsScrollOver] = useState(false);
-  const [isFinalClose, setIsFinalClose] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isScrollOver, setIsScrollOver] = useAtom(carAnimationGoingClose);
+  const [isFinalClose, setIsFinalClose] = useAtom(isCarAnimationLoaded);
+  const [isLoaded, setIsLoaded] = useAtom(isInitialCarFramesLoaded);
 
   const targetFrameRef = useRef(START_FRAME);
   const isAutoScrollingRef = useRef(false);
@@ -61,7 +68,7 @@ export default function PreloadCar() {
         setCurrentFrame((prev) => {
           let next = prev;
 
-          if (prev === 170 && !isAutoScrollingRef.current) {
+          if (prev === 150 && !isAutoScrollingRef.current) {
             isAutoScrollingRef.current = true;
             targetFrameRef.current = END_FRAME;
             setIsScrollOver(true);
@@ -125,9 +132,7 @@ export default function PreloadCar() {
 
   if (!isLoaded) {
     return (
-      <div className="fixed left-0 top-0 w-full h-screen bg-black z-18 max-lg:hidden flex items-center justify-center">
-        <div className="text-white">Загрузка анимации...</div>
-      </div>
+      <div className="fixed left-0 top-0 w-full h-screen overflow-hidden bg-black z-18 max-lg:hidden" />
     );
   }
 
@@ -136,28 +141,50 @@ export default function PreloadCar() {
       className="fixed left-0 top-0 w-full h-screen overflow-hidden bg-black z-18 max-lg:hidden"
       style={{ transition: ".7s", opacity: isScrollOver ? 0 : 1 }}
     >
-      <div
-        className="w-[38.1vw] h-[38.1vw] rounded-[50%] bg-[#400F47] mx-auto"
-        style={{ filter: "blur(265px)" }}
-      />
-      <div
-        className="w-[120vw] h-[0.06vw] absolute left-[-10vw] top-[50%]"
-        style={{
-          background: "rgba(255, 255, 255, 0.2)",
-          transform: "rotate(-29deg)",
-        }}
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 1.7 }}
+      >
+        <div
+          className="w-[38.1vw] h-[38.1vw] rounded-[50%] bg-[#400F47] mx-auto"
+          style={{ filter: "blur(265px)" }}
+        />
+      </motion.div>
 
-      <img
-        src={
-          loadedImagesRef.current[currentFrame]?.src ||
-          `/frames/${currentFrame}.webp`
-        }
-        alt="Animation frame"
-        className="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
-        fetchPriority="high"
-      />
+      <motion.div
+        initial={{ x: "-120vw", y: "120vh" }}
+        animate={isLoaded ? { x: 0, y: "-10vw" } : { x: "-120vw", y: "120vh" }}
+        transition={{
+          duration: 1.2,
+          ease: [0.16, 1, 0.3, 1],
+          delay: 1.4,
+        }}
+      >
+        <div
+          className="w-[120vw] h-[0.06vw] absolute left-[-10vw] top-0"
+          style={{
+            background: "rgba(255, 255, 255, 0.4)",
+            transform: "rotate(-29deg)",
+          }}
+        />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 0.7 }}
+      >
+        <img
+          src={
+            loadedImagesRef.current[currentFrame]?.src ||
+            `/frames/${currentFrame}.webp`
+          }
+          alt="Animation frame"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+        />
+      </motion.div>
     </div>
   );
 }

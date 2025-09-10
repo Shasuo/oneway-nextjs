@@ -21,7 +21,7 @@ const ContactButton = ({ href, text, iconSrc }: ContactButtonProps) => {
 
 export default function Contacts() {
   return (
-    <section className="relative">
+    <section className="relative" id="CONTACTS">
       <img src="/contactsCar.webp" className="w-full" />
       <div
         className="text-center mx-auto w-fit absolute top-[3.2vw]"

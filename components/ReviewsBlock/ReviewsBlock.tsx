@@ -3,6 +3,7 @@ import reviewData from "./reviewData";
 import ReviewsSlide from "./ReviewSlide";
 import { useMediaQuery } from "react-responsive";
 import ReviewSlideMobile from "./ReviewSlideMobile";
+import { motion } from "framer-motion";
 
 export default function ReviewsBlock() {
   const data = reviewData;
@@ -45,5 +46,16 @@ export default function ReviewsBlock() {
     setReview(reviewSlideData[currentSlide]);
   }
 
-  return <section style={{ position: "relative" }}>{review}</section>;
+  return (
+    <section style={{ position: "relative" }} id="REVIEWS">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "0px 0px -30% 0px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        {review}
+      </motion.div>
+    </section>
+  );
 }

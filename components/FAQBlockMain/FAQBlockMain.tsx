@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
 interface FAQLineType {
@@ -36,32 +37,50 @@ export const FAQDataMain: FAQLineType[] = [
 
 const FAQLine = ({ question, answer }: FAQLineType) => {
   const [isActive, setIsActive] = useState(false);
+
   return (
-    <div
-      className="relative w-full overflow-hidden"
-      style={{ height: isActive ? "fit-content" : "2.22vw", transition: ".3s" }}
-      onClick={() => {
-        setIsActive(!isActive);
-      }}
+    <motion.div
+      className="relative w-full overflow-hidden cursor-pointer"
+      layout="position"
+      onClick={() => setIsActive(!isActive)}
     >
-      <h4 className="text_type_3x font-semibold cursor-pointer">{question}</h4>
-      <p
-        className="font-medium text_type_2x opacity-60 mt-[1.67vw]"
-        style={{ whiteSpace: "pre-line" }}
-      >
-        {answer}
-      </p>
-      <img
+      <h4 className="text_type_3x font-semibold">{question}</h4>
+
+      <AnimatePresence initial={false}>
+        {isActive && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{
+              height: { duration: 0.3, ease: "easeInOut" },
+              opacity: { duration: 0.25, ease: "easeInOut" },
+            }}
+            className="overflow-hidden"
+          >
+            <p
+              className="font-medium text_type_2x opacity-60 mt-[1.67vw]"
+              style={{ whiteSpace: "pre-line" }}
+            >
+              {answer}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.img
         src={isActive ? "/circle_minus.svg" : "/circle_plus.svg"}
-        className="w-[1.66vw] absolute right-0 top-[0.27vw] cursor-pointer"
+        className="w-[1.66vw] absolute right-0 top-[0.27vw]"
+        animate={{ rotate: isActive ? 180 : 0 }}
+        transition={{ duration: 0.2 }}
       />
-    </div>
+    </motion.div>
   );
 };
 
 export const FAQBlock = () => {
   return (
-    <section className="mt-[11.1vw] w-full flex flex-col gap-[3.47vw]">
+    <section className="mt-[11.1vw] w-full flex flex-col gap-[3.47vw]" id="FAQ">
       {FAQDataMain.map((faq, index) => (
         <FAQLine key={index} question={faq.question} answer={faq.answer} />
       ))}
