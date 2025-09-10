@@ -46,7 +46,7 @@ const headerLinks: HeaderLinksType[] = [
 ];
 
 export const Header = () => {
-  const goingClose = useAtom(carAnimationGoingClose)[0];
+  // const goingClose = useAtom(carAnimationGoingClose)[0];
   const [isScrollOver, setIsScrollOver] = useAtom(carAnimationGoingClose);
 
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(true);
@@ -54,33 +54,33 @@ export const Header = () => {
 
   const scrollTo = (id: string) => {
     if (!isScrollOver) {
-      setIsScrollOver(true);}
+      setIsScrollOver(true);
+    }
 
-      const element = document.getElementById(id);
-      if (!element) {
-        console.warn(`Элемент с id="${id}" не найден`);
+    const element = document.getElementById(id);
+    if (!element) {
+      console.warn(`Элемент с id="${id}" не найден`);
 
-        return;
-      }
+      return;
+    }
 
-      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+    const elementTop = element.getBoundingClientRect().top + window.scrollY;
 
-      const offsetVw = 7;
-      const vwInPx = (offsetVw / 100) * window.innerWidth;
+    const offsetVw = 7;
+    const vwInPx = (offsetVw / 100) * window.innerWidth;
 
-      const targetScrollY = elementTop - vwInPx;
+    const targetScrollY = elementTop - vwInPx;
 
-      window.scrollTo({
-        top: targetScrollY,
-        behavior: "smooth",
-      });
-    
+    window.scrollTo({
+      top: targetScrollY,
+      behavior: "smooth",
+    });
   };
   return (
     <header>
       <div
         className={`fixed left-[5vw] w-full top-0 z-30 max-w-[90vw] flex justify-between max-lg:hidden ${
-          goingClose ? "items-center" : "items-start"
+          isScrollOver ? "items-center" : "items-start"
         }`}
       >
         <div className="flex items-center">
@@ -126,10 +126,10 @@ export const Header = () => {
             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
           >
-            <HeaderLink text="Инвесторам" href="" />
+            <HeaderLink text="Инвесторам" href="/investors" />
           </motion.div>
         </div>
-        {goingClose ? (
+        {isScrollOver ? (
           <div className="px-[2.22vw] py-[0.73vw] bg-white rounded-[200px] text_type_normal text-[#16171A] cursor-pointer font-medium">
             Связаться
           </div>

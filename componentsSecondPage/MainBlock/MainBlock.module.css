@@ -1,0 +1,35 @@
+.block {
+  background-image: url(../assets/car_bg.png);
+  background-size: cover;
+  width: 100%;
+  height: 57.5vw;
+}
+
+.wrapper {
+  padding-top: 9.444vw;
+  padding-left: 5vw;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.111vw;
+}
+
+@media (max-width: 1024px) {
+  .block {
+    background-image: url(../assets/car_bg_mob.png);
+    background-size: cover;
+    width: 100%;
+    height: 122.4vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .wrapper {
+    padding-top: 32vw;
+    padding-left: 0;
+    width: 87.2vw;
+    gap: 4.267vw;
+    text-align: center;
+  }
+}

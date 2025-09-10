@@ -1,0 +1,112 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.222vw;
+  width: 28.056vw;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.111vw;
+}
+
+.link {
+  color: var(--text-primary);
+  text-decoration-thickness: 5%;
+  text-underline-offset: 20%;
+}
+
+.checkbox {
+  display: flex;
+  gap: 0.833vw;
+  position: relative;
+}
+
+.label {
+  width: fit-content;
+  padding-top: 0.09vw;
+  width: 24.305vw;
+}
+
+.checkbox_input {
+  appearance: none;
+  position: relative;
+  width: 1.111vw;
+  height: 1.111vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: var(--text-primary);
+  border-radius: 0.139vw;
+  border: 0.07vw solid var(--text-primary);
+}
+
+.error_checkbox {
+  border-color: #d44343;
+}
+
+.checkbox_input:hover {
+  border-color: #696a6c;
+  background: #121317;
+}
+
+.checkbox_input:checked {
+  border-color: #696a6c;
+  background: #121317;
+}
+
+.checkbox_input:checked::after {
+  content: "";
+  position: absolute;
+  top: 0.243vw;
+  left: 0.174vw;
+  mask: url("../assets/done.svg") no-repeat center;
+  background-color: var(--text-primary);
+  mask-size: contain;
+  width: 0.625vw;
+  height: 0.486vw;
+}
+
+.button {
+  width: 100%;
+}
+
+.error {
+  color: #d44343;
+}
+
+@media (max-width: 1024px) {
+  .form {
+    gap: 8.533vw;
+    width: 85.067vw;
+  }
+
+  .inputs {
+    gap: 4.267vw;
+  }
+
+  .checkbox {
+    gap: 3.2vw;
+  }
+
+  .label {
+    padding-top: 1.067vw;
+    width: 77.6vw;
+  }
+
+  .checkbox_input {
+    width: 4.267vw;
+    height: 4.267vw;
+    border-radius: 0.533vw;
+    border-width: 0.267vw;
+  }
+
+  .checkbox_input:checked::after {
+    top: 0.8vw;
+    left: 0.533vw;
+    width: 2.667vw;
+    height: 1.867vw;
+  }
+}

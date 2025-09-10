@@ -1,0 +1,26 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 2.222vw;
+  align-items: center;
+}
+
+.text_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.667vw;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .block {
+    gap: 4.8vw;
+  }
+
+  .text_wrapper {
+    gap: 3.2vw;
+    width: 91.467vw;
+    align-items: center;
+    text-align: center;
+  }
+}

@@ -1,0 +1,47 @@
+.block {
+  padding: 0 5vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  background-image: url(../assets/grey_logo.png);
+  background-size: cover;
+  width: 33.889vw;
+  height: 12.639vw;
+}
+
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 2.222vw;
+  width: 46.528vw;
+}
+
+.benefit {
+  padding-bottom: 2.222vw;
+  border-bottom: 0.07vw solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .block {
+    padding: 0 6.4vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 13.867vw;
+  }
+
+  .logo {
+    width: 54.667vw;
+    height: 24vw;
+  }
+
+  .benefits {
+    gap: 6.4vw;
+    width: 100%;
+  }
+
+  .benefit {
+    padding-bottom: 6.4vw;
+  }
+}

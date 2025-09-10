@@ -1,0 +1,25 @@
+.detail {
+  width: 17.847vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.833vw;
+}
+
+.icon {
+  background-image: url(../assets/guarantee_icon.svg);
+  background-size: cover;
+  width: 1.736vw;
+  height: 1.736vw;
+}
+
+@media (max-width: 1024px) {
+  .detail {
+    width: 81.6vw;
+    gap: 3.2vw;
+  }
+
+  .icon {
+    width: 6.667vw;
+    height: 6.667vw;
+  }
+}

@@ -1,0 +1,31 @@
+.button {
+  border-radius: 13.889vw;
+  border: 0;
+  box-sizing: border-box;
+  padding: 0.694vw 0.833vw;
+  display: flex;
+  justify-content: center;
+  color: #16171A;
+  background-color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--text-primary-80);
+}
+
+.fit {
+  width: fit-content;
+}
+
+.all_width {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .button {
+    border-radius: 53.333vw;
+    padding: 2.667vw 8.533vw;
+  }
+}
