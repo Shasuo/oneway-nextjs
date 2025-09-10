@@ -5,7 +5,7 @@
   padding: 0.694vw 0.833vw;
   display: flex;
   justify-content: center;
-  color: #16171A;
+  color: #16171a;
   background-color: var(--text-primary);
   text-decoration: none;
   cursor: pointer;
@@ -16,7 +16,7 @@
 }
 
 .fit {
-  width: fit-content;
+  /* width: fit-content; */
 }
 
 .all_width {
