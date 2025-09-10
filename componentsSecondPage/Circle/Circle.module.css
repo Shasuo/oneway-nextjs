@@ -1,6 +1,7 @@
 .circle {
   background-image: url(../assets/dashed_circle.svg);
   background-size: cover;
+  background-position: center;
   width: 27.778vw;
   height: 27.778vw;
   display: flex;
