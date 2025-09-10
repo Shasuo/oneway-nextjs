@@ -344,8 +344,6 @@ export const FirstScreen = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  console.log(isInView);
-
   const isLoaded = useAtom(isCarAnimationLoaded)[0];
 
   const startLineAnimationHandle = (lineId: number) => {

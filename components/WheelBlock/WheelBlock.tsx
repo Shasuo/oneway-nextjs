@@ -50,7 +50,7 @@ const TextPoint = ({
         style={{
           maxWidth: `36vw`,
           marginTop: needAlign ? (isActive ? "-.15vw" : "-.6vw") : undefined,
-          whiteSpace: "pre-line"
+          whiteSpace: "pre-line",
         }}
       >
         {text}
@@ -69,6 +69,7 @@ const WheelSequence = () => {
   const lastY = useRef(0);
   const scrollAccumulator = useRef(0);
   const [isImagesLoaded, setIsImagesLoaded] = useState(false);
+  const loadedWheelImagesRef = useRef<Record<number, HTMLImageElement>>({});
 
   useEffect(() => {
     if (!isLoaded) {
@@ -83,9 +84,16 @@ const WheelSequence = () => {
       const img = new Image();
       const src = `${basePath}${i.toString().padStart(2, "0")}.webp`;
       img.src = src;
-      const promise = new Promise((resolve, reject) => {
-        img.onload = () => resolve(img);
-        img.onerror = () => reject(new Error(`Failed to load ${src}`));
+      const promise = new Promise<void>((resolve, reject) => {
+        img.onload = () => {
+          loadedWheelImagesRef.current[i] = img;
+          resolve();
+        };
+
+        img.onerror = () => {
+          console.error(`❌ Failed to load frame ${i}: ${src}`);
+          reject(new Error(`Failed to load ${src}`));
+        };
       });
       imagePromises.push(promise);
     }
@@ -117,11 +125,8 @@ const WheelSequence = () => {
         scrollAccumulator.current -= frameDelta * (FRAME_DURATION_MS / 16.66);
 
         setFrame((prev) => {
-          let next =
-            frameDelta > 0
-              ? (prev + frameDelta) % TOTAL_FRAMES
-              : (prev + (frameDelta % TOTAL_FRAMES) + TOTAL_FRAMES) %
-                TOTAL_FRAMES;
+          let next = prev + frameDelta;
+          next = ((next % TOTAL_FRAMES) + TOTAL_FRAMES) % TOTAL_FRAMES;
           return next;
         });
       }
@@ -135,7 +140,10 @@ const WheelSequence = () => {
     return null;
   }
 
-  const src = `/wheelFrames/Wheel_new${frame.toString().padStart(2, "0")}.webp`;
+  const currentImage = loadedWheelImagesRef.current[frame];
+  const src =
+    currentImage?.src ||
+    `/wheelFrames/Wheel_new${frame.toString().padStart(2, "0")}.webp`;
 
   return (
     <img
@@ -156,7 +164,10 @@ export const WheelBlock = () => {
       viewport={{ once: true, margin: "0px 0px -30% 0px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <section className="bg-black relative overflow-hidden max-lg:hidden mt-[11.11vw]" id="SERVICES">
+      <section
+        className="bg-black relative overflow-hidden max-lg:hidden mt-[11.11vw]"
+        id="SERVICES"
+      >
         <div
           className="w-[118.47vw] h-[118.47vw] absolute rounded-[100%] top-[-11vw] left-[-70.4vw] z-[2]"
           style={{ border: "0.07vw dashed white" }}
