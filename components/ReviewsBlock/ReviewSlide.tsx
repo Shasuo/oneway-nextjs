@@ -37,11 +37,13 @@ export default function ReviewsSlide({
         </div>
         <div className="absolute bottom-0">
           <div className="mt-[3.47vw] flex text_type_1_5x">
-            {socialIcon ? <img
-              src={socialIcon}
-              alt={socialAlt}
-              className="w-[1.11vw] h-[1.11vw]"
-            /> : null}
+            {socialIcon ? (
+              <img
+                src={socialIcon}
+                alt={socialAlt}
+                className="w-[1.11vw] h-[1.11vw]"
+              />
+            ) : null}
             <p className="ml-[0.556vw]">{socialNetwork}</p>
           </div>
           <div className="flex">
@@ -61,7 +63,11 @@ export default function ReviewsSlide({
         </div>
       </div>
       <div className="ml-[4.86vw] overflow-hidden absolute right-0">
-        <img className=" max-w-[52.64vw] w-[52.64vw] left-0" src={imgSrc} alt={imgAlt} />
+        <img
+          className=" max-w-[52.64vw] w-[52.64vw] left-0"
+          src={imgSrc}
+          alt={imgAlt}
+        />
       </div>
     </div>
   );

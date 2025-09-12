@@ -3,6 +3,7 @@ import { BottomThresholdInView } from "../BottomThresholdInView/BottomThresholdI
 import { motion, useInView } from "framer-motion";
 import { useAtom } from "jotai";
 import { isCarAnimationLoaded } from "../Jotai/atoms";
+import { useMediaQuery } from "react-responsive";
 
 interface TextPointProps {
   mt: number;
@@ -64,6 +65,7 @@ const SCROLL_MULTIPLIER = 0.4;
 const TOTAL_FRAMES = 86;
 
 const WheelSequence = () => {
+  const isMobile = useMediaQuery({ maxWidth: 1024 });
   const isLoaded = useAtom(isCarAnimationLoaded)[0];
   const [frame, setFrame] = useState(0);
   const lastY = useRef(0);
@@ -72,6 +74,7 @@ const WheelSequence = () => {
   const loadedWheelImagesRef = useRef<Record<number, HTMLImageElement>>({});
 
   useEffect(() => {
+    if (isMobile) return;
     if (!isLoaded) {
       setIsImagesLoaded(false);
       return;
@@ -107,9 +110,10 @@ const WheelSequence = () => {
       });
 
     return () => {};
-  }, [isLoaded]);
+  }, [isLoaded, isMobile]);
 
   useEffect(() => {
+    if (isMobile) return;
     if (!isLoaded || !isImagesLoaded) return;
 
     const onScroll = () => {
@@ -134,7 +138,7 @@ const WheelSequence = () => {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isLoaded, isImagesLoaded]);
+  }, [isLoaded, isImagesLoaded, isMobile]);
 
   if (!isLoaded || !isImagesLoaded) {
     return null;

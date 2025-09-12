@@ -7,6 +7,7 @@ import {
 } from "../Jotai/atoms";
 
 import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
 
 const START_FRAME = 100;
 const END_FRAME = 189;
@@ -15,6 +16,7 @@ const FRAME_DURATION_MS = 30;
 const SCROLL_MULTIPLIER = 0.04;
 
 export default function PreloadCar() {
+  const isMobile = useMediaQuery({ maxWidth: 1024 });
   const [currentFrame, setCurrentFrame] = useState(START_FRAME);
   const [isScrollOver, setIsScrollOver] = useAtom(carAnimationGoingClose);
   const [isFinalClose, setIsFinalClose] = useAtom(isCarAnimationLoaded);
@@ -25,6 +27,7 @@ export default function PreloadCar() {
   const loadedImagesRef = useRef<Record<number, HTMLImageElement>>({});
 
   useEffect(() => {
+    if(isMobile) return;
     const loadAllFrames = async () => {
       const promises: Promise<void>[] = [];
 
@@ -52,7 +55,7 @@ export default function PreloadCar() {
     };
 
     loadAllFrames();
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     if (!isLoaded) return;

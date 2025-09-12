@@ -62,31 +62,36 @@ body {
     font-size: 2.133vw;
     line-height: 150%;
   }
+  /*12px*/
   .text_type_1_5x {
     font-size: 3.2vw;
     line-height: 150%;
   }
-
-  .text_type_normal {
+  /*14px*/
+  .text_type_normal__mobile {
     font-size: 3.73vw;
     line-height: 142.86%;
   }
-
-  .text_type_2x {
+  /*16px*/
+  .text_type_2x__mobile {
     font-size: 4.267vw;
     line-height: 150%;
   }
-  .text_type_2_25x {
+
+  /*18px*/
+  .text_type_2_25x__mobile {
     font-size: 4.8vw;
     line-height: 122%;
   }
 
-  .text_type_2_5x {
+  /*20px*/
+  .text_type_2_5x__mobile {
     font-size: 5.33vw;
     line-height: 120%;
   }
 
-  .text_type_3x {
+  /*24px*/
+  .text_type_3x__mobile {
     font-size: 6.4vw;
     line-height: 108.33%;
   }

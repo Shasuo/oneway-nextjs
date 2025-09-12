@@ -45,5 +45,12 @@ export default function ReviewsBlockMobile() {
     setReview(reviewSlideDataMobile[currentSlide]);
   }
 
-  return <section style={{ position: "relative" }}>{review}</section>;
+  return (
+    <section
+      style={{ position: "relative" }}
+      className="mt-[10.6vw] min-lg:hidden"
+    >
+      {review}
+    </section>
+  );
 }

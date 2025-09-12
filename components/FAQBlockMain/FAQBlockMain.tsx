@@ -40,11 +40,20 @@ const FAQLine = ({ question, answer }: FAQLineType) => {
 
   return (
     <motion.div
-      className="relative w-full overflow-hidden cursor-pointer"
+      className="relative w-full overflow-hidden cursor-pointer max-lg:min-h-[6.5vw]"
       layout="position"
       onClick={() => setIsActive(!isActive)}
     >
-      <h4 className="text_type_3x font-semibold">{question}</h4>
+      <h4 className="text_type_3x font-semibold text_type_normal__mobile flex justify-between items-center">
+        <div className="max-lg:max-w-[72vw]">{question}</div>
+        
+        <motion.img
+        src={isActive ? "/circle_minus.svg" : "/circle_plus.svg"}
+        className="w-[1.66vw] max-lg:w-[6.4vw]"
+        animate={{ rotate: isActive ? 180 : 0 }}
+        transition={{ duration: 0.2 }}
+      />
+      </h4>
 
       <AnimatePresence initial={false}>
         {isActive && (
@@ -59,7 +68,7 @@ const FAQLine = ({ question, answer }: FAQLineType) => {
             className="overflow-hidden"
           >
             <p
-              className="font-medium text_type_2x opacity-60 mt-[1.67vw]"
+              className="font-medium text_type_2x opacity-60 mt-[1.67vw] text_type_1_5x max-lg:font-semibold"
               style={{ whiteSpace: "pre-line" }}
             >
               {answer}
@@ -68,19 +77,17 @@ const FAQLine = ({ question, answer }: FAQLineType) => {
         )}
       </AnimatePresence>
 
-      <motion.img
-        src={isActive ? "/circle_minus.svg" : "/circle_plus.svg"}
-        className="w-[1.66vw] absolute right-0 top-[0.27vw]"
-        animate={{ rotate: isActive ? 180 : 0 }}
-        transition={{ duration: 0.2 }}
-      />
+      
     </motion.div>
   );
 };
 
 export const FAQBlock = () => {
   return (
-    <section className="mt-[11.1vw] w-full flex flex-col gap-[3.47vw]" id="FAQ">
+    <section
+      className="mt-[11.1vw] w-full flex flex-col gap-[3.47vw] max-lg:mt-[10.6vw] box-border max-lg:px-[2.133vw]"
+      id="FAQ"
+    >
       {FAQDataMain.map((faq, index) => (
         <FAQLine key={index} question={faq.question} answer={faq.answer} />
       ))}

@@ -24,7 +24,7 @@ const HeaderLink = ({
   };
   return (
     <Link
-      className="text_type_2x"
+      className={"text_type_2x block text_type_normal__mobile"}
       href={href}
       onClick={(e) => handleAnchorCheck(e)}
     >
@@ -45,11 +45,13 @@ const headerLinks: HeaderLinksType[] = [
   { text: "Контакты", href: "CONTACTS" },
 ];
 
+const investorsLink = "/investors";
+
 export const Header = () => {
   // const goingClose = useAtom(carAnimationGoingClose)[0];
   const [isScrollOver, setIsScrollOver] = useAtom(carAnimationGoingClose);
 
-  const [isMobileMenuActive, setIsMobileMenuActive] = useState(true);
+  const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
   const isLoaded = useAtom(isInitialCarFramesLoaded)[0];
 
   const scrollTo = (id: string) => {
@@ -126,7 +128,7 @@ export const Header = () => {
             animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
           >
-            <HeaderLink text="Инвесторам" href="/investors" />
+            <HeaderLink text="Инвесторам" href={investorsLink} />
           </motion.div>
         </div>
         {isScrollOver ? (
@@ -158,17 +160,64 @@ export const Header = () => {
           </div>
         )}
       </div>
-      <div className="max-lg:block hidden">
+      <div className="min-lg:hidden">
         <img
           src="/logo_mobile.svg"
           alt="OneWay"
-          className="w-[24vw] h-[24vw] mx-auto"
+          className="w-[24vw] h-[24vw] mx-auto absolute left-1/2 -translate-x-1/2"
         />
         <img
           src="/burger.svg"
           alt="menu"
-          className="fixed right-[4.26vw] top-[4.26vw] w-[8.53vw] h-[8.53vw]"
+          className="fixed right-[4.26vw] top-[4.26vw] w-[8.53vw] h-[8.53vw] z-50"
+          onClick={() => setIsMobileMenuActive(true)}
         />
+      </div>
+      <div
+        className="fixed bottom-0 left-1/2 -translate-x-1/2 z-60 w-full h-full"
+        style={{
+          transition: ".3s",
+          display: isMobileMenuActive ? "block" : "none",
+        }}
+      >
+        <div
+          className="absolute w-full h-full bg-[#08090B] opacity-90 top-0 left-0"
+          style={{ transition: ".3s" }}
+          onClick={() => setIsMobileMenuActive(false)}
+        />
+        <div className="z-10 absolute bottom-0 h-[85%] w-full bg-[#141519] overflow-auto">
+          <img
+            src="/menu_close_icon.svg"
+            className="w-[8.53vw] h-[8.53vw] absolute right-[4.26vw] top-[4.26vw]"
+            onClick={() => setIsMobileMenuActive(false)}
+          />
+          <img
+            src="/menu_icon.png"
+            className="w-[38.1vw] absolute left-[4.26vw] top-[4.26vw]"
+          />
+          <div className="max-w-[91.5vw] mx-auto">
+            <div className="mt-[22.4vw] box-border p-[2.133vw] space-y-[8.53vw]">
+              {headerLinks.map((el, index) => (
+                <HeaderLink
+                  text={el.text}
+                  href={el.href || ""}
+                  anchor={(id) => scrollTo(id)}
+                  key={index}
+                />
+              ))}
+              <div
+                style={{ borderTop: "0.26vw dashed white" }}
+                className="opacity-40 mt-[-2.13vw]"
+              />
+              <div className="mt-[-2.13vw]">
+                <HeaderLink text="Инвесторам" href={investorsLink} />
+              </div>
+            </div>
+            <div className="mt-[8.53vw] w-full bg-white rounded-[53.3vw] py-[2.93vw] text-center text_type_normal__mobile text-[#16171A] font-medium mb-[9.33vw]">
+              Связаться
+            </div>
+          </div>
+        </div>
       </div>
     </header>
   );
