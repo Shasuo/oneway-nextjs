@@ -6,6 +6,7 @@ import { isInitialCarFramesLoaded } from "../Jotai/atoms";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import { useEffect } from "react";
+import { LinkUsPopup } from "../LinkUsPopup/LinkUsPopup";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const isMobile = useMediaQuery({ maxWidth: 1024 });
@@ -40,10 +41,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         }}
       />
       <Header />
+      <LinkUsPopup/>
       <div className="min-h-[90vh]">{children}</div>
 
       <footer
-        className="max-w-[97vw] mx-auto w-full relative mt-[5vw] box-border flex items-center justify-between text_type_normal text_type_1_5x py-[2.22vw] px-[1.66vw] max-lg:max-w-[91.5vw] max-lg:py-[8.53vw] max-lg:flex-col max-lg:gap-[1.86vw] max-lg:text-[#727375]"
+        className="max-w-[97vw] mx-auto w-full relative mt-[5vw] box-border flex items-center justify-between text_type_normal text_type_1_5x__mobile py-[2.22vw] px-[1.66vw] max-lg:max-w-[91.5vw] max-lg:py-[8.53vw] max-lg:flex-col max-lg:gap-[1.86vw] max-lg:text-[#727375]"
         style={{ borderTop: "0.07vw solid #434447" }}
       >
         <div className="min-lg:hidden">Все права защищены 2025</div>

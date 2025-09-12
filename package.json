@@ -9,10 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@react-input/mask": "^2.0.4",
     "classnames": "^2.5.1",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^12.23.12",
+    "inputmask": "^5.0.9",
     "jotai": "^2.14.0",
     "next": "15.5.2",
     "react": "19.1.0",
@@ -24,6 +24,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/inputmask": "^5.0.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

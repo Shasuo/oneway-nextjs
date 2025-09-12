@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   carAnimationGoingClose,
   isInitialCarFramesLoaded,
+  isLinkUsPopupOpen,
 } from "../Jotai/atoms";
 import { useAtom } from "jotai";
 import { motion } from "framer-motion";
@@ -50,6 +51,7 @@ const investorsLink = "/investors";
 export const Header = () => {
   // const goingClose = useAtom(carAnimationGoingClose)[0];
   const [isScrollOver, setIsScrollOver] = useAtom(carAnimationGoingClose);
+  const setLinkUsPopupOpen = useAtom(isLinkUsPopupOpen)[1];
 
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
   const isLoaded = useAtom(isInitialCarFramesLoaded)[0];
@@ -86,11 +88,14 @@ export const Header = () => {
         }`}
       >
         <div className="flex items-center">
-          <img
-            src="/main_logo.svg"
-            alt="OneWay"
-            className="w-[6.25vw] h-[6.25vw]"
-          />
+          <Link href="/">
+            <img
+              src="/main_logo.svg"
+              alt="OneWay"
+              className="w-[6.25vw] h-[6.25vw]"
+            />
+          </Link>
+
           <nav className="ml-[5.63vw] overflow-hidden">
             <div className="space-x-[2.64vw] flex items-center">
               {headerLinks.map((el, index) => (
@@ -132,7 +137,10 @@ export const Header = () => {
           </motion.div>
         </div>
         {isScrollOver ? (
-          <div className="px-[2.22vw] py-[0.73vw] bg-white rounded-[200px] text_type_normal text-[#16171A] cursor-pointer font-medium">
+          <div
+            className="px-[2.22vw] py-[0.73vw] bg-white rounded-[200px] text_type_normal text-[#16171A] cursor-pointer font-medium hover:opacity-75"
+            onClick={() => setLinkUsPopupOpen(true)}
+          >
             Связаться
           </div>
         ) : (
@@ -213,7 +221,7 @@ export const Header = () => {
                 <HeaderLink text="Инвесторам" href={investorsLink} />
               </div>
             </div>
-            <div className="mt-[8.53vw] w-full bg-white rounded-[53.3vw] py-[2.93vw] text-center text_type_normal__mobile text-[#16171A] font-medium mb-[9.33vw]">
+            <div className="mt-[8.53vw] w-full bg-white rounded-[53.3vw] py-[2.93vw] text-center text_type_normal__mobile text-[#16171A] font-medium mb-[9.33vw]" onClick={() => setLinkUsPopupOpen(true)}>
               Связаться
             </div>
           </div>

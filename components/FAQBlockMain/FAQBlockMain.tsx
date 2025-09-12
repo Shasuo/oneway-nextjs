@@ -68,7 +68,7 @@ const FAQLine = ({ question, answer }: FAQLineType) => {
             className="overflow-hidden"
           >
             <p
-              className="font-medium text_type_2x opacity-60 mt-[1.67vw] text_type_1_5x max-lg:font-semibold"
+              className="font-medium text_type_2x opacity-60 mt-[1.67vw] text_type_1_5x__mobile max-lg:font-semibold"
               style={{ whiteSpace: "pre-line" }}
             >
               {answer}

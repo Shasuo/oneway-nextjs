@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Input.module.css";
 import classNames from "classnames";
-import { useMask } from "@react-input/mask";
+
 
 function Input({
   label,
@@ -23,16 +23,6 @@ function Input({
   const [isFocused, setIsFocused] = useState(false);
   const [mask, setMask] = useState(false);
   const [useRussianMask, setUseRussianMask] = useState(false);
-
-  const russianMaskRef = useMask({
-    mask: "+7 (___) ___-__-__",
-    replacement: { _: /\d/ },
-  });
-
-  const foreignMaskRef = useMask({
-    mask: "+______________________",
-    replacement: { _: /\d/ },
-  });
 
   const handleChange = (e: any) => {
     let val = e.target.value;
@@ -145,15 +135,7 @@ function Input({
         }
         onChange={name === "phone" ? handleChange : onChange}
         onPaste={name === "phone" ? handlePaste : undefined}
-        ref={
-          name === "phone"
-            ? mask
-              ? useRussianMask
-                ? russianMaskRef
-                : foreignMaskRef
-              : null
-            : null
-        }
+        
       />
       {children}
     </div>
