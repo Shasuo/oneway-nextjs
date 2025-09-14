@@ -1,5 +1,4 @@
 import Contacts from "../components/Contacts/Contacts";
-import ReviewsBlock from "../components/ReviewsBlock/ReviewsBlock";
 import Team from "../components/Team/Team";
 import PreloadCar from "@/components/PreloadCar/PreloadCar";
 import { FirstScreen } from "@/components/FirstScreen/FirstScreen";
@@ -11,9 +10,9 @@ import { useEffect, useState } from "react";
 import { MobileCar } from "@/components/MobileCar/MobileCar";
 import { MobileFirstScreen } from "@/components/MobileFirstScreen/MobileFirstScreen";
 import { MobileWheelBlock } from "@/components/MobileWheelBlock/MobileWheelBlock";
-import ReviewsBlockMobile from "@/components/ReviewsBlock/ReviewsBlockMobile";
 import { useAtom } from "jotai";
 import { isMainPage } from "@/components/Jotai/atoms";
+import { Cases } from "@/components/Cases/Cases";
 
 export default function Home() {
   const isMobile = useMediaQuery({ maxWidth: 1024 });
@@ -28,29 +27,17 @@ export default function Home() {
   return (
     <main>
       {!isMobileState && <PreloadCar />}
-      
-
       <div className="max-w-[97vw] mx-auto w-full relative max-lg:max-w-[91.5vw]">
         <MobileCar />
       </div>
-
       {!isMobileState && <FirstScreen />}
-
       <div className="max-w-[97vw] mx-auto w-full relative max-lg:max-w-[91.5vw]">
         <MobileFirstScreen />
       </div>
       <SecondScreen />
-      <div
-        className="max-w-[97vw] mx-auto w-full relative max-lg:max-w-[91.5vw]"
-        id="REVIEWS"
-      >
-        <ReviewsBlock />
-        <ReviewsBlockMobile />
-      </div>
-
+      <Cases />
       {!isMobileState && <WheelBlock />}
       <MobileWheelBlock />
-
       <Team />
 
       <div className="max-w-[90vw] mx-auto w-full relative max-lg:max-w-[91.5vw]">

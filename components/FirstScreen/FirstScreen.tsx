@@ -367,7 +367,7 @@ export const FirstScreen = () => {
   return (
     <section className="mt-[11.25vw] relative max-lg:hidden">
       <div
-        className="absolute w-full overflow-hidden top-[19vw] left-0 z-10"
+        className="absolute w-full overflow-hidden top-[19vw] left-0 z-10 pointer-events-none user-select-none"
         style={{ height: "calc(100% + 20vw)" }}
       >
         <div className="w-[42.9vw] h-[42.9vw] absolute rounded-[100%] filter blur-[7vw] bg-[#400F47] right-[-36.25vw] top-[10vw] opacity-60" />

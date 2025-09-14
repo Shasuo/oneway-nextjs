@@ -11,7 +11,7 @@ const TextPoint = ({ text }: { text: string }) => {
 
 export const MobileWheelBlock = () => {
   return (
-    <section className="min-lg:hidden mt-[2vw] relative" id="SERVICES">
+    <section className="min-lg:hidden mt-[6vw] relative" id="SERVICES">
       <img src="/mobile_wheel.webp" className="w-full" />
       <div className="absolute left-[5.86vw] top-[12.26vw] flex">
         <div
