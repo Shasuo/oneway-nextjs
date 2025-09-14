@@ -1,7 +1,5 @@
 import { useState } from "react";
 import reviewData from "./reviewData";
-import ReviewsSlide from "./ReviewSlide";
-import { useMediaQuery } from "react-responsive";
 import ReviewSlideMobile from "./ReviewSlideMobile";
 
 export default function ReviewsBlockMobile() {
@@ -49,6 +47,7 @@ export default function ReviewsBlockMobile() {
     <section
       style={{ position: "relative" }}
       className="mt-[10.6vw] min-lg:hidden"
+      
     >
       {review}
     </section>

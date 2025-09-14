@@ -3,15 +3,12 @@ import MinusIcon from "../assets/circle_minus.svg";
 import styles from "./FAQItem.module.css";
 import classNames from "classnames";
 import { useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import { motion } from "framer-motion";
 
 function FAQItem({
-  isMobile,
   question,
   answer,
 }: {
-  isMobile: boolean;
   question: string;
   answer: string;
 }) {
@@ -21,9 +18,8 @@ function FAQItem({
     <button onClick={() => setIsOpen(!isOpen)} className={styles.item}>
       <div className={styles.question}>
         <h3
-          className={`text text_type_${
-            isMobile ? "normal" : "3x"
-          } font-semibold`}
+          className="text text_type_3x text_type_normal__mobile font-semibold"
+          style={{width: "100%", textAlign: "left"}}
         >
           {question}
         </h3>
@@ -53,12 +49,10 @@ function FAQItem({
         }}
       >
         <p
-          className={classNames("text", [styles.answer], {
-            // text_type_tiny_semibold: isMobile,
-            // text_type_body_medium: !isMobile,
-            "text_type_1_5x font-regular": isMobile,
-            "text_type_2x font-medium": !isMobile,
-          })}
+          className={classNames(
+            "text text_type_2x font-medium text_type_1_5x__mobile max-lg:font-regular",
+            [styles.answer]
+          )}
         >
           {answer}
         </p>

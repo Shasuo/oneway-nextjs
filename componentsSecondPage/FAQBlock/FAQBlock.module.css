@@ -5,6 +5,9 @@
   width: 100%;
   min-height: 48.75vw;
 }
+.bg {
+  display: none;
+}
 
 .wrapper {
   display: flex;
@@ -21,6 +24,7 @@
   }
 
   .bg {
+    display: block;
     position: absolute;
     top: -18.667vw;
     left: 0;

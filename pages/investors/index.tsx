@@ -1,25 +1,27 @@
-import Logo from "@/componentsSecondPage/Logo/Logo";
 import styles from "./PartnersPage.module.css";
-import { useMediaQuery } from "react-responsive";
 import MainBlock from "@/componentsSecondPage/MainBlock/MainBlock";
 import FAQBlock from "@/componentsSecondPage/FAQBlock/FAQBlock";
 import Process from "@/componentsSecondPage/Process/Process";
 import Benefits from "@/componentsSecondPage/Benefits/Benefits";
 import Guarantee from "@/componentsSecondPage/Guarantee/Guarantee";
 import FormBlock from "@/componentsSecondPage/FormBlock/FormBlock";
+import { useEffect } from "react";
+import { useAtom } from "jotai";
+import { isMainPage } from "@/components/Jotai/atoms";
 
 function PartnersPage() {
-  const isMobile = useMediaQuery({ maxWidth: 1024 });
+  const setIsMainPage = useAtom(isMainPage)[1];
+
+  useEffect(() => setIsMainPage(false), []);
 
   return (
     <main className={styles.page}>
-      {/* {isMobile && <Logo />} */}
-      <MainBlock isMobile={isMobile} />
-      <Process isMobile={isMobile} />
-      <Benefits isMobile={isMobile} />
-      <Guarantee isMobile={isMobile} />
-      <FAQBlock isMobile={isMobile} />
-      <FormBlock isMobile={isMobile} />
+      <MainBlock />
+      <Process />
+      <Benefits />
+      <Guarantee />
+      <FAQBlock  />
+      <FormBlock  />
     </main>
   );
 }

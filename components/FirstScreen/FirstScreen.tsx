@@ -33,7 +33,7 @@ const TextBlock = ({
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   return (
     <div
-    ref={ref}
+      ref={ref}
       className="absolute"
       style={{
         left: `${position.left}vw`,
@@ -365,94 +365,104 @@ export const FirstScreen = () => {
   }, [isInView, isLoaded]);
 
   return (
-    <section className="mt-[11.25vw] relative h-[77vw] max-lg:hidden">
-      <h1 className="text_type_big max-w-[59.03vw] ml-[6.25vw] font-semibold">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.3, ease: "easeOut", delay: 0.1 }}
-        >
-          <span className="opacity-[40%]">Автомобиль из-за рубежа —</span> это
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.3, ease: "easeOut", delay: 0.2 }}
-        >
-          выше класс и лучше состояние —
-        </motion.div>
+    <section className="mt-[11.25vw] relative max-lg:hidden">
+      <div
+        className="absolute w-full overflow-hidden top-[19vw] left-0 z-10"
+        style={{ height: "calc(100% + 20vw)" }}
+      >
+        <div className="w-[42.9vw] h-[42.9vw] absolute rounded-[100%] filter blur-[7vw] bg-[#400F47] right-[-36.25vw] top-[10vw] opacity-60" />
+        <div className="w-[42.9vw] h-[42.9vw] absolute rounded-[100%] filter blur-[7vw] bg-[#0016FF] left-[-39.24vw] top-[33vw] opacity-50" />
+      </div>
 
+      <div className="max-w-[97vw] mx-auto w-full relative max-lg:max-w-[91.5vw] h-[77vw] overflow-hidden">
+        <h1 className="text_type_big max-w-[59.03vw] ml-[6.25vw] font-semibold">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut", delay: 0.1 }}
+          >
+            <span className="opacity-[40%]">Автомобиль из-за рубежа —</span> это
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut", delay: 0.2 }}
+          >
+            выше класс и лучше состояние —
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
+          >
+            за те же деньги
+          </motion.div>
+        </h1>
+
+        <div>
+          <TextBlock
+            active
+            headline="Выгодно"
+            text="Призвети машину из-за рубежа, дешевле, чем купить такую же в России"
+            textWidth={24.24}
+            position={{ top: 18.7, left: 36.04 }}
+            isLoaded={isLoaded}
+          />
+          <TextBlock
+            active={false}
+            headline="Надежно"
+            text="Авто за рубежом проходят ТО у официальных диллеров, поэтому служат дольше"
+            textWidth={23.4}
+            position={{ top: 39.5, left: 68.3 }}
+            isLoaded={isLoaded}
+          />
+          <div ref={ref} className="w-full absolute top-[50vw] h-[1vw] " />
+
+          <TextBlock
+            active={false}
+            headline="Прозрачно"
+            text="Из-за строгого законодательства риск скурченного пробега и скрытых дефектов меньше"
+            textWidth={23.5}
+            position={{ top: 53.2, left: 11.1 }}
+            isLoaded={isLoaded}
+          />
+        </div>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0 }}
+          animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
         >
-          за те же деньги
-        </motion.div>
-      </h1>
-
-      <div>
-        <TextBlock
-          active
-          headline="Выгодно"
-          text="Призвети машину из-за рубежа, дешевле, чем купить такую же в России"
-          textWidth={24.24}
-          position={{ top: 18.7, left: 36.04 }}
-          isLoaded={isLoaded}
-        />
-        <TextBlock
-          active={false}
-          headline="Надежно"
-          text="Авто за рубежом проходят ТО у официальных диллеров, поэтому служат дольше"
-          textWidth={23.4}
-          position={{ top: 39.5, left: 68.3 }}
-          isLoaded={isLoaded}
-        />
-        <div ref={ref} className="w-full absolute top-[50vw] h-[1vw] " />
-
-        <TextBlock
-          active={false}
-          headline="Прозрачно"
-          text="Из-за строгого законодательства риск скурченного пробега и скрытых дефектов меньше"
-          textWidth={23.5}
-          position={{ top: 53.2, left: 11.1 }}
-          isLoaded={isLoaded}
-        />
-      </div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
-      >
-        <div>
-          <div
-            style={{
-              position: "absolute",
-              top: "17vw",
-              left: 0,
-              right: 0,
-              height: "30.43vw",
-              background:
-                "linear-gradient(to bottom, rgba(20, 21, 25, 1), rgba(20, 21, 25, 0.7), rgba(20, 21, 25, 0))",
-              pointerEvents: "none",
-              zIndex: 2,
-            }}
-          />
-
-          {animatedLines.map((line: InteractiveLineType, index: number) => (
-            <InteractiveLine
-              key={index}
-              id={index}
-              width={line.width}
-              isActive={line.isActive}
-              position={line.position}
-              angle={line.angle}
-              startLineAnimationById={startLineAnimationHandle}
-              animationTimeMs={line.animationTimeMs}
+          <div>
+            <div
+              style={{
+                position: "absolute",
+                top: "17vw",
+                left: 0,
+                right: 0,
+                height: "30.43vw",
+                background:
+                  "linear-gradient(to bottom, rgba(20, 21, 25, 1), rgba(20, 21, 25, 0.7), rgba(20, 21, 25, 0))",
+                pointerEvents: "none",
+                zIndex: 2,
+              }}
             />
-          ))}
-        </div>
-      </motion.div>
+
+            {animatedLines.map((line: InteractiveLineType, index: number) => (
+              <InteractiveLine
+                key={index}
+                id={index}
+                width={line.width}
+                isActive={line.isActive}
+                position={line.position}
+                angle={line.angle}
+                startLineAnimationById={startLineAnimationHandle}
+                animationTimeMs={line.animationTimeMs}
+              />
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 };

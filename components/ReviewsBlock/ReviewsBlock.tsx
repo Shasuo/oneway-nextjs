@@ -47,7 +47,7 @@ export default function ReviewsBlock() {
   }
 
   return (
-    <section style={{ position: "relative" }} id="REVIEWS" className="max-lg:hidden">
+    <section style={{ position: "relative" }} className="max-lg:hidden">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

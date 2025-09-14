@@ -1,14 +1,13 @@
+import classNames from "classnames";
 import styles from "./FAQList.module.css";
 
 function FAQList({
-  width,
   children,
 }: {
-  width: string;
   children: React.ReactNode;
 }) {
   return (
-    <div className={styles.list} style={{ width: `${width}` }}>
+    <div className={classNames(styles.list, "w-[45.278vw] max-lg:w-full")}>
       {children}
     </div>
   );

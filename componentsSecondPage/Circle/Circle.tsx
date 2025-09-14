@@ -1,20 +1,16 @@
 import classNames from "classnames";
 import styles from "./Circle.module.css";
-import { useMediaQuery } from "react-responsive";
 
 function Circle({
-  isMobile,
   children,
 }: {
-  isMobile: boolean;
   children: React.ReactNode;
 }) {
   return (
     <div className={styles.circle}>
       <p
         className={classNames(
-          "text",
-          `text_type_${isMobile ? "normal" : "2x"}"`,
+          "text text_type_2x text_type_normal__mobile",
           [styles.step]
         )}
       >

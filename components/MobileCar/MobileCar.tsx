@@ -1,6 +1,6 @@
 export const MobileCar = () => {
   return (
-    <section className="relative text-center min-lg:hidden">
+    <section className="relative text-center min-lg:hidden h-[125.07vw]">
       <img src="mobile_auto.webp" className="w-full min-lg:hidden" />
       <div className="absolute w-full top-[31.73vw]">
         <h1 className="font-semibold text_type_3x__mobile">

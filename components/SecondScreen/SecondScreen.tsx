@@ -1,7 +1,10 @@
 import { motion, useInView } from "framer-motion";
+import { useAtom } from "jotai";
 import { useRef } from "react";
+import { isLinkUsPopupOpen } from "../Jotai/atoms";
 
 export const SecondScreen = () => {
+  const setLinkUsPopupOpen = useAtom(isLinkUsPopupOpen)[1];
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.7 });
   return (
@@ -52,7 +55,10 @@ export const SecondScreen = () => {
           transition={{ duration: 0.3, ease: "easeOut", delay: 0.3 }}
           className="max-lg:hidden"
         >
-          <div className="mt-[1.11vw] py-[0.76vw] px-[2.22vw] rounded-[200px] bg-white w-fit mx-auto text-[#16171A] font-medium text_type_normal cursor-pointer">
+          <div
+            className="mt-[1.11vw] py-[0.76vw] px-[2.22vw] rounded-[200px] bg-white w-fit mx-auto text-[#16171A] font-medium text_type_normal cursor-pointer"
+            onClick={() => setLinkUsPopupOpen(true)}
+          >
             Связаться
           </div>
         </motion.div>

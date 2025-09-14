@@ -1,12 +1,10 @@
 import classNames from "classnames";
 import styles from "./Benefits.module.css";
-import { useMediaQuery } from "react-responsive";
 
-function Benefits({ isMobile }: { isMobile: boolean }) {
+
+function Benefits() {
   const textClassName = classNames(
-    "text",
-    `text_type_${!isMobile ? "3x" : "normal"}`,
-    `font-${!isMobile ? "semibold" : "medium"}`,
+    "text text_type_3x text_type_normal__mobile font-semibold max-lg:font-medium",
     [styles.benefit]
   );
   return (

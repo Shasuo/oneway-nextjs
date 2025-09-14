@@ -12,30 +12,41 @@ import { MobileCar } from "@/components/MobileCar/MobileCar";
 import { MobileFirstScreen } from "@/components/MobileFirstScreen/MobileFirstScreen";
 import { MobileWheelBlock } from "@/components/MobileWheelBlock/MobileWheelBlock";
 import ReviewsBlockMobile from "@/components/ReviewsBlock/ReviewsBlockMobile";
+import { useAtom } from "jotai";
+import { isMainPage } from "@/components/Jotai/atoms";
 
 export default function Home() {
   const isMobile = useMediaQuery({ maxWidth: 1024 });
   const [isMobileState, setIsMobileState] = useState(false);
+  const setIsMainPage = useAtom(isMainPage)[1];
   useEffect(() => {
     setIsMobileState(isMobile);
   }, [isMobile]);
 
+  useEffect(() => setIsMainPage(true), []);
+
   return (
-    <>
+    <main>
       {!isMobileState && <PreloadCar />}
+      
 
       <div className="max-w-[97vw] mx-auto w-full relative max-lg:max-w-[91.5vw]">
         <MobileCar />
+      </div>
 
-        {!isMobileState && <FirstScreen />}
+      {!isMobileState && <FirstScreen />}
+
+      <div className="max-w-[97vw] mx-auto w-full relative max-lg:max-w-[91.5vw]">
         <MobileFirstScreen />
       </div>
       <SecondScreen />
-      <div className="max-w-[97vw] mx-auto w-full relative max-lg:max-w-[91.5vw]">
+      <div
+        className="max-w-[97vw] mx-auto w-full relative max-lg:max-w-[91.5vw]"
+        id="REVIEWS"
+      >
         <ReviewsBlock />
         <ReviewsBlockMobile />
       </div>
-      
 
       {!isMobileState && <WheelBlock />}
       <MobileWheelBlock />
@@ -46,6 +57,6 @@ export default function Home() {
         <Contacts />
         <FAQBlock />
       </div>
-    </>
+    </main>
   );
 }
