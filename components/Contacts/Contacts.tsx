@@ -43,8 +43,16 @@ export default function Contacts() {
         style={{ left: "50%", transform: "translateX(-50%)" }}
         className="bottom-[3.47vw] flex items-center gap-[1.11vw] absolute max-lg:bottom-[10.66vw] max-lg:flex-col max-lg:gap-[4.26vw]"
       >
-        <ContactButton text="+79660076457" href="" iconSrc="/wa.svg" />
-        <ContactButton text="@one_way_manager" href="" iconSrc="/tg.svg" />
+        <ContactButton
+          text="+79660076457"
+          href="tel:+79660076457"
+          iconSrc="/wa.svg"
+        />
+        <ContactButton
+          text="@one_way_manager"
+          href="https://t.me/one_way_manager"
+          iconSrc="/tg.svg"
+        />
       </div>
     </section>
   );

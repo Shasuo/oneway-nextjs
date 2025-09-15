@@ -19,8 +19,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => (
         Сайт сделан в VONDO
       </Link>
       <div className="flex items-center gap-[1.67vw] max-lg:block">
-        <Link href="" className="underline">
-          Политика конфеданциальности
+        <Link
+          href="https://disk.360.yandex.ru/i/ID5xWuZxUmF8_Q"
+          className="underline"
+        >
+          Политика конфиденциальности
         </Link>
         <div className="max-lg:hidden">Все права защищены 2025</div>
       </div>

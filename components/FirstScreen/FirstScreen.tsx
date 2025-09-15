@@ -404,7 +404,7 @@ export const FirstScreen = () => {
           <TextBlock
             active
             headline="Выгодно"
-            text="Призвети машину из-за рубежа, дешевле, чем купить такую же в России"
+            text="Привезти машину из-за рубежа, дешевле, чем купить такую же в России"
             textWidth={24.24}
             position={{ top: 18.7, left: 36.04 }}
             isLoaded={isLoaded}
@@ -422,7 +422,7 @@ export const FirstScreen = () => {
           <TextBlock
             active={false}
             headline="Прозрачно"
-            text="Из-за строгого законодательства риск скурченного пробега и скрытых дефектов меньше"
+            text="Из-за строгого законодательства риск скрученного пробега и скрытых дефектов меньше"
             textWidth={23.5}
             position={{ top: 53.2, left: 11.1 }}
             isLoaded={isLoaded}

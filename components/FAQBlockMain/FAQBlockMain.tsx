@@ -9,7 +9,7 @@ interface FAQLineType {
 export const FAQDataMain: FAQLineType[] = [
   {
     question:
-      "Почему покупка авто из\u00a0за\u00a0границы выгоднее чем в\u00a0России?",
+      "Почему покупка авто из-за\u00a0границы выгоднее чем в\u00a0России?",
     answer: ` \u2022 За ту же сумму — авто свежее, лучше комплектация, честный пробег\u000a \u2022 Прямые поставки — без перекупов и наценок\u000a \u2022 Машина приходит "под вас", без истории такси, битых деталей и скрученных одометров\u000a \u2022 Настоящий выбор: Корея, Япония, Европа\u000a \u2022 Мы полностью проверяем авто до покупки`,
   },
   {
@@ -46,13 +46,13 @@ const FAQLine = ({ question, answer }: FAQLineType) => {
     >
       <h4 className="text_type_3x font-semibold text_type_normal__mobile flex justify-between items-center">
         <div className="max-lg:max-w-[72vw]">{question}</div>
-        
+
         <motion.img
-        src={isActive ? "/circle_minus.svg" : "/circle_plus.svg"}
-        className="w-[1.66vw] max-lg:w-[6.4vw]"
-        animate={{ rotate: isActive ? 180 : 0 }}
-        transition={{ duration: 0.2 }}
-      />
+          src={isActive ? "/circle_minus.svg" : "/circle_plus.svg"}
+          className="w-[1.66vw] max-lg:w-[6.4vw]"
+          animate={{ rotate: isActive ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        />
       </h4>
 
       <AnimatePresence initial={false}>
@@ -76,8 +76,6 @@ const FAQLine = ({ question, answer }: FAQLineType) => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      
     </motion.div>
   );
 };
