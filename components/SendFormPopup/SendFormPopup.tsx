@@ -58,7 +58,7 @@ export const SendFormPopup = () => {
                 : "Ошибка отправки"}
             </h3>
             {formState === "success" ? (
-              <p className="mt-[0.56vw] font-medium text_type_normal__mobile max-lg:mt-[2.13vw]">
+              <p className="mt-[0.56vw] font-medium text_type_2x text_type_normal__mobile max-lg:mt-[2.13vw]">
                 Менеджер свяжется с вами
                 <br /> в ближайшее время
               </p>
